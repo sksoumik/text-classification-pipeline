@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+runs/
+outputs/
+cache_dir/
 apex/
 data/
 # C extensions

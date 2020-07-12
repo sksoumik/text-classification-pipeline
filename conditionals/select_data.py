@@ -39,6 +39,7 @@ def main():
     select_primary_condition(data, input_condition,
                              name_of_the_classification_or_item,
                              phenomenon_value)
+    print("INFO: DONE! new data saved in the data/ directory.")
 
 
 if __name__ == "__main__":
