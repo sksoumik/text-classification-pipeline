@@ -38,33 +38,17 @@ def read_data():
     return data
 
 
-# under-sample dataset to make all class balanced
-def class_balancing(data):
-    counts = data['class_id'].value_counts()
-    # Undersample the dataset
-    minority_class_length = len(data[data['class_id'] == max(counts.keys())])
-    # print(f"\nINFO: minority class length: {minority_class_length}")
-    majority_class_indices = data[data['class_id'] == min(counts.keys())].index
-    # print(f"\nMajority class indices: \n{majority_class_indices}")
-    random_majority_indices = np.random.choice(majority_class_indices,
-                                               minority_class_length,
-                                               replace=False)
-    minority_class_indices = data[data['class_id'] == max(counts.keys())].index
-    under_sample_indices = np.concatenate(
-        [minority_class_indices, random_majority_indices])
-    under_sample = data.loc[under_sample_indices]
-    print(
-        f"class distribution after under sampling: \n{under_sample.class_id.value_counts()}"
-    )
-    return under_sample
-
 
 # split the dataframe into train and test
 def split_data(data):
-    train_df, test_df = train_test_split(data, test_size=0.2)
+    # split the dataframe into train and test
+    train_df = data.sample(frac=0.8,random_state=200)
+    test_df = data.drop(train_df.index)
+    # save the test data to disk for further analysis
+    test_df.to_csv("data/test_df.csv", index=False)
     return train_df, test_df
 
-
+# For binary classification
 def create_model(base_model, weights, args):
     model = ClassificationModel(base_model, weights, args=args)
     return model
@@ -129,8 +113,7 @@ def main():
     }
 
     data = read_data()
-    balanced_data = class_balancing(data)
-    train_df, test_df = split_data(balanced_data)
+    train_df, test_df = split_data(data)
     # print(f"\nclass distribution in train data: \n{train_df.class_id.value_counts()}")
     # print(f"\nclass distribution in test data: \n{test_df.class_id.value_counts()}")
 
@@ -156,6 +139,28 @@ def main():
                           group_names=labels,
                           categories=categories,
                           cmap='binary')
+    
+    # list true labels
+    true_label = list(test_df['class_id'])
+    
+    # list all the texts from test data
+    test_df_comments = []
+    for i in test_df['comment']:
+        test_df_comments.append(i) 
+    
+    # Make predictions on test data
+    predictions, raw_outputs = model.predict(test_df_comments)
+
+    # make a new dataframe that includes text, true label and predicted label
+    final_evaluation_df = pd.DataFrame(
+        {'comment': test_df_comments,
+        'true labels': true_label,
+        'predicted labels': predictions
+        })
+        
+    # save the evaluation sheet
+    final_evaluation_df.to_csv("data/final_evaluation_df.csv", index=False)
+
 
 if __name__ == "__main__":
     main()
