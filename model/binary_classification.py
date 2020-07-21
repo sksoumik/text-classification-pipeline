@@ -153,11 +153,11 @@ def main():
 
     # make a new dataframe that includes text, true label and predicted label
     final_evaluation_df = pd.DataFrame(
-        {'comment': test_df_comments,
+        {'text': test_df_comments,
         'true labels': true_label,
         'predicted labels': predictions
         })
-        
+
     # save the evaluation sheet
     final_evaluation_df.to_csv("data/final_evaluation_df.csv", index=False)
 
