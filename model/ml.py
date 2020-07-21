@@ -1,3 +1,8 @@
+"""
+Binary classification: NLP
+
+"""
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -19,11 +24,16 @@ warnings.filterwarnings("ignore")
 pd.set_option('display.max_colwidth', -1)
 
 
+"""
+This function expects at least two columns with:
+text: context
+class_id: class ID generated from the conditionals/binary_class_map.py
+"""
 def read_data():
-    conditional_data_path = input(
-        "Input CSV file path that was generated from conditionals: ")
-    data = pd.read_csv(conditional_data_path)
-    data = data.filter(items=['comment', 'class_id'])
+    data_path = input(
+        "Input CSV file path that is created from conditionals: ")
+    data = pd.read_csv(data_path)
+    data = data.filter(items=['text', 'class_id'])
     print(f"class distribution:\n{data.class_id.value_counts()}")
     return data
 
