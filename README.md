@@ -1,8 +1,13 @@
 # text-classification-pipeline
-text data clean, pre-process, augmentation, apply SOTA models
+Text data clean, pre-process, augmentation, apply State-of-the-art NLP models
+Here, I have used a simple wrapper called [simpletransformers](https://github.com/ThilinaRajapakse/simpletransformers), on top of the original transformers by huggingface.
 
 
 ## Installation
+Using anaconda distribution: 
+
+1. Configure the environment
+```
 
 conda create --name simpletransformer python=3.6.9
 conda activate simpletransformer
@@ -18,5 +23,24 @@ python
 >>> nltk.download('averaged_perceptron_tagger')
 >>> exit()
 
-## Run The Project
-1. python preprocessing/preprocess.py
+```
+clone this repo:
+```
+$ git clone git@github.com:sksoumik/text-classification-pipeline.git
+$ cd text-classification-pipeline
+```
+
+## Run the project
+
+#### Clean texts
+```
+$ python preprocessing/preprocess.py
+```
+
+#### Data augmentatiom
+
+```
+$ python augmentation/data_augmentation.py
+```
+
+#### 

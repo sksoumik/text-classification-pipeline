@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+import os 
 
 """
 Below code has been adapted from: https://github.com/DTrimarchi10/confusion_matrix
@@ -84,5 +84,5 @@ def make_confusion_matrix(cf,
     if title:
         plt.title(title)
     
-    # save the cm 
+    os.makedirs("data", exist_ok=True)
     plt.savefig('data/' + 'confusion_matrix.png')
