@@ -22,22 +22,17 @@ warnings.filterwarnings("ignore")
 pd.set_option('display.max_colwidth', -1)
 
 from plot_confusion_matrix import make_confusion_matrix
-
-
-
 '''
 The below function might be useful if the data is not already splitted in 
 train and test set 
 '''
 # def data_split(data):
-#     train_df, test_df = train_test_split(data, stratify=data['class_id'], 
+#     train_df, test_df = train_test_split(data, stratify=data['class_id'],
 #                                     test_size=0.20)
-    
+
 #     print(f"\nclass distribution in train set: \n{train_df['class_id'].value_counts()}")
 #     print(f"\nclass distribution in test set: \n{test_df['class_id'].value_counts()}")
-#     return train_df, test_df 
-
-
+#     return train_df, test_df
 """
 read train and test data from csv file that was generated from
 conditionals/prepare_data.py file. 
@@ -56,8 +51,6 @@ def read_data():
     return train_df, test_df
 
 
-
-
 def training_data():
     train_data, test_data = read_data()
     class_len, label_details = class_length(train_data)
@@ -67,7 +60,7 @@ def training_data():
     # train_data = pd.DataFrame(train_data, header=None)
     # test_data = pd.DataFrame(test_data, header=None)
     print(f"train set sample: \n{train_data.head()}")
-    return train_data, test_data, class_len, label_details 
+    return train_data, test_data, class_len, label_details
 
 
 def class_length(train_data):
