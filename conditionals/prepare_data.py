@@ -63,17 +63,21 @@ make all class's data points equal
 '''
 
 
-def sampling_train_data(group, k=int(
+def sampling_train_data(
+    group,
+    k=int(
         input(
             "Enter the amount of data that you want for each class for train set: "
         ))):
-   
+
     if len(group) < k:
         return group
     return group.sample(k)
 
 
-def sampling_test_data(group, k=int(
+def sampling_test_data(
+    group,
+    k=int(
         input(
             "Enter the amount of data that you want for each class for test set: "
         ))):
