@@ -33,14 +33,31 @@ $ cd text-classification-pipeline
 ## Run the project
 
 #### Clean texts
+(if needed)
 ```
 $ python preprocessing/preprocess.py
 ```
 
 #### Data augmentatiom
-
+(if needed)
 ```
 $ python augmentation/data_augmentation.py
 ```
 
-#### 
+#### Process data
+
+```
+$ python conditionals/prepare_data.py
+```
+
+#### Train model
+
+```
+$ python train/train_model.py
+
+optional arguments
+
+$ python train/train_model.py --num_train_epochs=15 --learning_rate=1e-5 --train_batch_size=4 --eval_batch_size=4 --base_model=bert --tokenizer=bert-base-cased  
+
+```
+

@@ -19,7 +19,7 @@ second column contains the texts/ feauture
 '''
 
 
-def read_data(train_data, test_data):
+def read_data():
     train_path = input("Input train data path:  ")
     train_data = pd.read_excel(train_path, keep_default_na=False, header=None)
     # add a new column `train` for train data
@@ -32,7 +32,7 @@ def read_data(train_data, test_data):
     data = train_data.append(test_data, ignore_index=True)
     # rename columns
     rename_cols = {
-        0: "class_id",
+        0: "class",
         1: "feature",
     }
     data = data.rename(columns=rename_cols)
@@ -63,21 +63,21 @@ make all class's data points equal
 '''
 
 
-def sampling_train_data(group, k=class_data_points):
-    class_data_points = int(
+def sampling_train_data(group, k=int(
         input(
             "Enter the amount of data that you want for each class for train set: "
-        ))
+        ))):
+   
     if len(group) < k:
         return group
     return group.sample(k)
 
 
-def sampling_test_data(group, k=class_data_points):
-    class_data_points = int(
+def sampling_test_data(group, k=int(
         input(
             "Enter the amount of data that you want for each class for test set: "
-        ))
+        ))):
+
     if len(group) < k:
         return group
     return group.sample(k)
@@ -86,8 +86,8 @@ def sampling_test_data(group, k=class_data_points):
 def balance_data(data):
     train_data = data[data["train-test"] == "train"]
     test_data = data[data["train-test"] == "test"]
-    train_df = train_data[["feature", "class_id"]]
-    test_df = test_data[["feature", "class_id"]]
+    train_df = train_data[["feature", "class_id", "class"]]
+    test_df = test_data[["feature", "class_id", "class"]]
     train_df = train_df.groupby('class_id').apply(
         sampling_train_data).reset_index(drop=True)
     test_df = test_df.groupby('class_id').apply(
@@ -99,10 +99,7 @@ def balance_data(data):
 
 
 def main():
-    # train and test data expects excel file
-    train_data = input("Enter the train data path: ")
-    test_data = input("Enter the test data path: ")
-    data = read_data(train_data, test_data)
+    data = read_data()
     data = encode_class(data)
     balance_data(data)
 
