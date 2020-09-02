@@ -7,8 +7,8 @@ Here, I have used a simple wrapper called [simpletransformers](https://github.co
 Using anaconda distribution: 
 
 1. Configure the environment
-```
 
+```
 conda create --name simpletransformer python=3.6.9
 conda activate simpletransformer
 pip install torch===1.2.0 torchvision===0.4.0 -f https://download.pytorch.org/whl/torch_stable.html
@@ -22,7 +22,6 @@ python
 >>> nltk.download('punkt')
 >>> nltk.download('averaged_perceptron_tagger')
 >>> exit()
-
 ```
 clone this repo:
 ```
@@ -54,10 +53,9 @@ $ python conditionals/prepare_data.py
 
 ```
 $ python train/train_model.py
-
+```
 optional arguments
 
-$ python train/train_model.py --num_train_epochs=15 --learning_rate=1e-5 --train_batch_size=4 --eval_batch_size=4 --base_model=bert --tokenizer=bert-base-cased  
-
 ```
-
+$ python train/train_model.py --num_train_epochs=15 --learning_rate=1e-5 --train_batch_size=4 --eval_batch_size=4 --base_model=bert --tokenizer=bert-base-cased  
+```
