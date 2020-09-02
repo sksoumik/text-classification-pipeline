@@ -3,10 +3,14 @@ Text data clean, pre-process, augmentation, apply State-of-the-art NLP models
 Here, I have used a simple wrapper called [simpletransformers](https://github.com/ThilinaRajapakse/simpletransformers), on top of the original transformers by huggingface.
 
 
-## Installation
-Using anaconda distribution: 
+#### clone this repo:
+```
+$ git clone git@github.com:sksoumik/text-classification-pipeline.git
+$ cd text-classification-pipeline
+```
 
-1. Configure the environment
+#### Installation
+Using anaconda distribution configure the environment
 
 ```
 conda create --name simpletransformer python=3.6.9
@@ -23,10 +27,9 @@ python
 >>> nltk.download('averaged_perceptron_tagger')
 >>> exit()
 ```
-clone this repo:
+You can also use the requirements.txt for the required packages
 ```
-$ git clone git@github.com:sksoumik/text-classification-pipeline.git
-$ cd text-classification-pipeline
+$ pip install requirements.txt
 ```
 
 ## Run the project
